@@ -1,0 +1,94 @@
+/*
+ * Security Pack — DCTLAB UI responsive layer (Phase 3.1).
+ * Mobile-first adjustments only; Bootstrap 3.4's own grid/navbar-collapse
+ * continues to handle the outer page/navigation breakpoints unchanged.
+ */
+
+@media (max-width: 768px) {
+    .sp-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .sp-header-actions {
+        align-self: flex-start;
+    }
+
+    .sp-score-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sp-score-cat-name {
+        width: auto;
+    }
+
+    .sp-stats-row {
+        flex-direction: column;
+    }
+
+    .sp-stat {
+        flex: 1 1 auto;
+    }
+
+    .sp-posture-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .sp-card {
+        padding: 12px;
+    }
+
+    .sp-score-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .sp-score-num {
+        font-size: 22px;
+    }
+}
+
+/* --- Navigation (Phase 5) ---
+   In Bootstrap 3.4's collapsed/stacked mobile menu (<768px, the SAME
+   breakpoint navbar-collapse already uses — no new breakpoint
+   introduced), a bottom-border accent on a full-width stacked item
+   reads poorly; a left accent bar matches how the dropdown's active
+   CHILD item is already styled at desktop width too, so the visual
+   language stays consistent instead of switching styles by width. */
+@media (max-width: 767px) {
+    .sp-navigation > li.active > a,
+    .sp-navigation > li.dropdown.active > a.dropdown-toggle {
+        box-shadow: none;
+        border-left: 3px solid var(--sp-info);
+        padding-left: 11px;
+    }
+
+    .sp-navigation .dropdown-menu {
+        box-shadow: none;
+        border: 0;
+        background: #fafafa;
+    }
+}
+
+/* --- TwoFactor page (Phase 5) --- */
+@media (max-width: 768px) {
+    .sp-method-card,
+    .sp-method-lookup-card {
+        flex: 1 1 100%;
+    }
+
+    .sp-inline-stats {
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sp-danger-zone .btn {
+        width: 100%;
+        white-space: normal;
+    }
+}

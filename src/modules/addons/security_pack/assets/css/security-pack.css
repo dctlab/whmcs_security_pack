@@ -1,0 +1,162 @@
+/*
+ * Security Pack — DCTLAB UI system, base/page-shell layer (Phase 3.1).
+ * Sits ON TOP of Bootstrap 3.4 (already loaded by the WHMCS admin theme) —
+ * no Bootstrap classes are overridden here, only new .sp-* classes added.
+ */
+
+.sp-page {
+    font-size: 13px;
+    color: #333;
+}
+
+.sp-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.sp-header-title {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+}
+
+.sp-header-desc {
+    margin: 0;
+    color: #767676;
+    font-size: 13px;
+}
+
+.sp-header-actions {
+    flex: 0 0 auto;
+}
+
+.sp-notifications {
+    margin-bottom: 16px;
+}
+
+.sp-content > .sp-card,
+.sp-content > .sp-stats-row,
+.sp-content > .sp-posture-grid {
+    margin-bottom: 16px;
+}
+
+.sp-footer-links {
+    color: #999;
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+/* --- Navigation (Phase 5) ---
+   Scoped entirely to .sp-navigation (the root <ul> navigation.tpl
+   already renders) and .nnmnavbar (the existing outer <nav> wrapper
+   built in core/pagebuilder.php's menu(), untouched) — no bare `a {}`,
+   `li {}`, or other global-element selectors, so nothing outside this
+   module's own navbar is affected. Sits on top of Bootstrap 3.4's own
+   .navbar-default/.dropdown — no Bootstrap class is redefined, only
+   layered on. */
+.nnmnavbar {
+    border-color: var(--sp-border);
+}
+
+.sp-navigation > li > a,
+.sp-navigation > li.dropdown > a.dropdown-toggle {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #444;
+    transition: background-color .15s ease, color .15s ease, box-shadow .15s ease;
+}
+
+.sp-navigation > li > a:hover,
+.sp-navigation > li > a:focus,
+.sp-navigation > li.dropdown > a.dropdown-toggle:hover,
+.sp-navigation > li.dropdown > a.dropdown-toggle:focus {
+    color: #1a1a1a;
+    background-color: #f5f7fa;
+}
+
+/* The ONE currently active top-level item OR the ONE dropdown that
+   contains the active child — never both a flat item and a group
+   active at once, since navigation.tpl computes $isActive/$groupActive
+   from the same single $activeAddress comparison (see that file). This
+   is presentation only: bold text + background + an accent underline,
+   not color alone, per the accessibility requirement that active state
+   must not be conveyed by color only. */
+.sp-navigation > li.active > a,
+.sp-navigation > li.dropdown.active > a.dropdown-toggle {
+    color: #17456e;
+    font-weight: 700;
+    background-color: #eaf1fa;
+    box-shadow: inset 0 -3px 0 0 var(--sp-info);
+}
+
+.sp-navigation > li.active > a:hover,
+.sp-navigation > li.active > a:focus,
+.sp-navigation > li.dropdown.active > a.dropdown-toggle:hover,
+.sp-navigation > li.dropdown.active > a.dropdown-toggle:focus {
+    background-color: #dfeaf7;
+    color: #123a5c;
+}
+
+.sp-navigation .dropdown-menu {
+    border-radius: var(--sp-radius);
+    padding: 4px 0;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .12);
+}
+
+.sp-navigation .dropdown-menu > li > a {
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #444;
+}
+
+.sp-navigation .dropdown-menu > li > a:hover,
+.sp-navigation .dropdown-menu > li > a:focus {
+    background-color: #f5f7fa;
+    color: #1a1a1a;
+}
+
+/* The active CHILD inside an open dropdown gets its own, slightly
+   different treatment (left accent bar, not the parent's bottom bar —
+   there's no bottom edge to anchor to inside a dropdown list) so a
+   child page is unambiguously "the one", distinct from its
+   active-parent dropdown toggle. */
+.sp-navigation .dropdown-menu > li.active > a {
+    background-color: #eaf1fa;
+    color: #17456e;
+    font-weight: 600;
+    border-left: 3px solid var(--sp-info);
+    padding-left: 13px;
+}
+
+.sp-navigation .dropdown-menu > li.active > a:hover,
+.sp-navigation .dropdown-menu > li.active > a:focus {
+    background-color: #dfeaf7;
+}
+
+.sp-navigation > li > a:focus,
+.sp-navigation > li.dropdown > a.dropdown-toggle:focus,
+.sp-navigation .dropdown-menu > li > a:focus {
+    outline: 2px solid var(--sp-info);
+    outline-offset: -2px;
+}
+
+/* Help link + right-aligned nav: a light separator instead of floating
+   with no visual boundary from the section links. */
+.nnmnavbar .navbar-right {
+    border-top: 1px solid var(--sp-border);
+}
+
+@media (min-width: 768px) {
+    .nnmnavbar .navbar-right {
+        border-top: 0;
+        border-left: 1px solid var(--sp-border);
+        margin-left: 6px;
+    }
+}

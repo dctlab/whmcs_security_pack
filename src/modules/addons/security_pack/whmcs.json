@@ -1,0 +1,35 @@
+{
+  "schema": "1.0",
+  "type": "whmcs-addons",
+  "name": "security_pack_ishost",
+  "license": "proprietary",
+  "category": "security",
+  "description": {
+    "name": "DCTLAB Security Pack",
+    "tagline": "Enterprise Security & Authentication for WHMCS",
+    "long": "Enterprise Security & Authentication for WHMCS — track logins, get alerts, email/WhatsApp/TOTP 2FA, protect accounts, and control access, all in one simple solution.",
+    "features": [
+      "Login Tracks",
+      "Login Notifications",
+      "Email 2FA",
+      "Optional Security Features",
+      "Country Restriction",
+      "GeoIP Language & Currency Auto-Switching",
+      "And Many More"
+    ]
+  },
+  "logo": {
+    "filename": "logo.png"
+  },
+  "support": {
+    "homepage": "https:\/\/dctlab.directcybertech.com\/",
+    "learn_more": "https:\/\/dctlab.directcybertech.com\/",
+    "email": "support@directcybertech.com"
+  },
+  "authors": [
+    {
+      "name": "DCTLAB",
+      "homepage": "https:\/\/dctlab.directcybertech.com\/"
+    }
+  ]
+}

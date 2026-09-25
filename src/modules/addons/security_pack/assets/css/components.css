@@ -1,0 +1,560 @@
+/*
+ * Security Pack — DCTLAB UI component layer (Phase 3.1).
+ * Restrained: clean white cards, subtle borders, small radius, minimal
+ * shadow, semantic status colors — per the Phase 3 visual-language spec.
+ */
+
+:root {
+    --sp-border: #e3e3e3;
+    --sp-radius: 4px;
+    --sp-text-muted: #767676;
+    --sp-good: #3fa64a;
+    --sp-warn: #d98a1f;
+    --sp-bad: #c9463c;
+    --sp-info: #2c85c9;
+}
+
+/* --- Card --- */
+.sp-card {
+    background: #fff;
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    padding: 16px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.sp-card-title {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* --- Security Score --- */
+.sp-score-wrap {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.sp-score-circle {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    color: #fff;
+    font-weight: 600;
+}
+
+.sp-score-good { background: var(--sp-good); }
+.sp-score-warn { background: var(--sp-warn); }
+.sp-score-bad  { background: var(--sp-bad); }
+
+.sp-score-num { font-size: 26px; line-height: 1; }
+.sp-score-den { font-size: 11px; opacity: .85; }
+
+.sp-score-state {
+    margin: 0 0 4px;
+    font-size: 16px;
+}
+
+.sp-score-note {
+    margin: 0;
+    color: var(--sp-text-muted);
+    max-width: 44em;
+}
+
+.sp-score-breakdown {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.sp-score-breakdown td {
+    padding: 6px 0;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.sp-score-cat-name { width: 160px; white-space: nowrap; }
+.sp-score-cat-val { width: 60px; text-align: right; color: var(--sp-text-muted); }
+
+.sp-cat-bar {
+    background: #eee;
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.sp-cat-bar > span {
+    display: block;
+    height: 100%;
+    background: var(--sp-good);
+}
+
+/* --- Stat cards --- */
+.sp-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.sp-stat {
+    flex: 1 1 140px;
+    background: #fff;
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    padding: 12px 14px;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sp-stat:hover,
+.sp-stat:focus {
+    border-color: #bbb;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sp-stat-value {
+    display: block;
+    font-size: 22px;
+    font-weight: 600;
+    color: #222;
+}
+
+.sp-stat-empty .sp-stat-value {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--sp-text-muted);
+}
+
+.sp-stat-label {
+    display: block;
+    font-size: 12px;
+    color: var(--sp-text-muted);
+    margin-top: 2px;
+}
+
+.sp-stat-hint {
+    display: block;
+    font-size: 11px;
+    color: var(--sp-text-muted);
+    margin-top: 2px;
+}
+
+/* --- Badge / status --- */
+.sp-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .02em;
+}
+
+.sp-badge-on {
+    color: #1d6b28;
+    background: #e7f5e9;
+}
+
+.sp-badge-off {
+    color: #666;
+    background: #f0f0f0;
+}
+
+/* --- Recommendations --- */
+.sp-recommendation {
+    padding: 10px 12px;
+    border-radius: var(--sp-radius);
+    border-left: 4px solid #ccc;
+    margin-bottom: 8px;
+    background: #fafafa;
+}
+
+.sp-recommendation:last-child { margin-bottom: 0; }
+
+.sp-recommendation-priority {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    margin-right: 8px;
+}
+
+.sp-recommendation-critical { border-color: var(--sp-bad); background: #fdf1f0; }
+.sp-recommendation-critical .sp-recommendation-priority { color: var(--sp-bad); }
+
+.sp-recommendation-warning { border-color: var(--sp-warn); background: #fdf6ea; }
+.sp-recommendation-warning .sp-recommendation-priority { color: var(--sp-warn); }
+
+.sp-recommendation-info { border-color: var(--sp-info); background: #eef6fb; }
+.sp-recommendation-info .sp-recommendation-priority { color: var(--sp-info); }
+
+.sp-recommendation-pass { border-color: var(--sp-good); background: #eef9ef; }
+.sp-recommendation-pass .sp-recommendation-priority { color: var(--sp-good); }
+
+.sp-recommendation-action {
+    margin-left: 8px;
+    white-space: nowrap;
+}
+
+/* --- Posture grid --- */
+.sp-posture-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 8px;
+}
+
+.sp-posture-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    background: #fff;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sp-posture-item:hover,
+.sp-posture-item:focus {
+    border-color: #bbb;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sp-posture-label {
+    font-size: 13px;
+    color: #333;
+}
+
+/* --- Empty state --- */
+.sp-empty {
+    color: var(--sp-text-muted);
+    margin: 0;
+}
+
+/* --- Badge, additional state (Phase 5) ---
+   sp-badge-on/sp-badge-off already existed (components/status-badge.tpl's
+   2-state on/off vocabulary). sp-badge-warn is added here for vocabularies
+   with a genuine THIRD, distinct state — e.g. TwoFactorController's own
+   "Enabled" / "Disabled" / "Not Configured", or "Pending verification" —
+   so "Disabled" (was on, now off) reads visibly differently from "Not
+   Configured" (never set up at all) instead of the two collapsing into
+   the same gray pill. */
+.sp-badge-warn {
+    color: #8a5a12;
+    background: #fbead0;
+}
+
+/* --- Status dot (Phase 5) ---
+   A small non-text-replacing indicator used ALONGSIDE a text label
+   (never instead of one) — status is still conveyed by the adjacent
+   word, not by color/shape alone. */
+.sp-status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.sp-status-dot-good { background: var(--sp-good); }
+.sp-status-dot-warn { background: var(--sp-warn); }
+.sp-status-dot-bad { background: var(--sp-bad); }
+.sp-status-dot-muted { background: #bbb; }
+
+/* --- Method summary card (Phase 5; restyled Phase 3.8B; rebuilt on
+   Bootstrap panels Phase 3.8C) ---
+   Used by templates/admin/components/method-status-card.tpl on the
+   TwoFactor "Security Overview" section only. Deliberately separate
+   from .sp-stat (which components/stat-card.tpl renders and several
+   OTHER pages — Dashboard, IP Restrictions — already rely on staying
+   byte-identical), so this never affects any page but TwoFactor.
+
+   Phase 3.8C: per request, rebuilt on Bootstrap 3's own
+   .panel/.panel-default/.panel-info + .row/.col-* grid — the SAME
+   components already used elsewhere in this admin app (see
+   ip-restrictions.tpl's .panel-danger) — instead of a custom flexbox box
+   with hand-picked border/shadow values that kept reading as too subtle
+   across two rounds of live feedback. Bootstrap's own panel chrome
+   (border + box-shadow) is reliably visible everywhere else in this
+   admin theme, so this sidesteps that problem entirely rather than
+   tuning color values again. .sp-method-card here only adds the
+   internal spacing/typography on top of the stock panel — it does not
+   redefine the panel's own border/shadow/radius. */
+.sp-metric-row {
+    margin-top: 4px;
+}
+
+.sp-metric-col {
+    margin-bottom: 16px;
+}
+
+.sp-method-card.panel {
+    margin-bottom: 0;
+}
+
+.sp-method-card .panel-body {
+    text-align: center;
+    padding: 18px 16px;
+}
+
+.sp-method-card-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.sp-method-card .sp-badge {
+    font-size: 11px;
+    padding: 3px 10px;
+}
+
+.sp-method-card-counts {
+    margin-top: 12px;
+}
+
+.sp-method-card-count {
+    display: block;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.sp-method-card-hint {
+    display: block;
+    font-size: 12px;
+    color: var(--sp-text-muted);
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+/* .sp-method-card-value / .sp-method-card-status / .sp-method-card-head
+   are intentionally left defined below (unused by the current template
+   since Phase 3.8B) as rollback reference — same convention as
+   NNM_Page_Builder::menulistFlat() elsewhere in this project. */
+.sp-method-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.sp-method-card-value {
+    display: block;
+    font-size: 26px;
+    font-weight: 700;
+    color: #222;
+    line-height: 1.1;
+}
+
+.sp-method-card-status {
+    display: block;
+    font-size: 12px;
+    color: var(--sp-text-muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* --- Method lookup card (Phase 5) ---
+   Used by templates/admin/components/method-lookup-card.tpl inside
+   TwoFactor's "Manage a User's Two-Factor Authentication" panel only. */
+.sp-method-lookup-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.sp-method-lookup-card {
+    flex: 1 1 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #fafafa;
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    padding: 10px 12px;
+}
+
+.sp-method-lookup-label {
+    font-size: 13px;
+    color: #333;
+}
+
+/* --- Inline summary chips (Phase 5) ---
+   Recovery codes remaining / trusted browser count in the Manage User
+   panel — small, non-badge emphasis for a NUMBER, not a status word. */
+.sp-inline-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 4px 0 14px;
+}
+
+.sp-inline-stat {
+    font-size: 12px;
+    color: var(--sp-text-muted);
+}
+
+.sp-inline-stat strong {
+    color: #222;
+    font-size: 14px;
+}
+
+/* --- Danger zone (Phase 5) ---
+   Visual separation for a destructive action — the action's own POST
+   target/confirmation/CSRF token are untouched; this only changes the
+   surrounding container's presentation. */
+.sp-danger-zone {
+    border: 1px solid #f3d4d1;
+    background: #fdf6f5;
+    border-radius: var(--sp-radius);
+    padding: 14px 16px;
+    margin-top: 16px;
+}
+
+.sp-danger-zone-title {
+    margin: 0 0 8px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    color: var(--sp-bad);
+}
+
+/* --- Scoped table styling (Phase 5) ---
+   .sp-table only — never a bare `table {}` selector, so native WHMCS
+   $aInt-rendered tables (Login Logs, Password Disabled, IP Limited
+   Clients) are completely unaffected. */
+.sp-table thead th {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    color: var(--sp-text-muted);
+    border-bottom: 2px solid var(--sp-border);
+    white-space: nowrap;
+}
+
+.sp-table tbody tr:hover {
+    background-color: #f7f9fb;
+}
+
+.sp-table td,
+.sp-table th {
+    vertical-align: middle;
+}
+
+/* --- Section heading group (Phase 5) ---
+   Groups a checkbox control with its explanatory text (Policy section)
+   without changing the underlying <label>/<input> association. */
+.sp-policy-control {
+    background: #fafafa;
+    border: 1px solid var(--sp-border);
+    border-radius: var(--sp-radius);
+    padding: 12px 14px;
+    margin-bottom: 14px;
+}
+
+.sp-policy-control .checkbox {
+    margin: 0;
+}
+
+/* --- Help disclosure + readable help text (Phase 3.8A) ---
+   Collapses the page's long explanatory paragraph behind a native
+   <details>/<summary> toggle so it doesn't dominate the page by default,
+   while keeping the full original text intact and reachable — scoped to
+   .sp-help-disclosure only, no bare details/summary selector so other
+   pages/areas are unaffected. */
+.sp-help-disclosure {
+    border: 1px solid #d5d9dd;
+    border-radius: var(--sp-radius);
+    padding: 8px 12px;
+    background: #f5f7fa;
+}
+
+/* Phase 3.8B: the plain bold+muted-gray summary text (Phase 3.8A) read
+   as indistinguishable from ordinary body text in live review — no
+   visible affordance that it was a clickable toggle. Now colored like
+   this page's other interactive elements (var(--sp-info), the same blue
+   used for links elsewhere in Security Pack) with a rotating chevron, and
+   the native <details> marker is suppressed so the custom chevron is the
+   only one shown (avoids a double-arrow in browsers that also render
+   their own marker). */
+.sp-help-disclosure summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--sp-info);
+    outline: none;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.sp-help-disclosure summary::-webkit-details-marker {
+    display: none;
+}
+
+.sp-help-disclosure summary::before {
+    content: "\25B8";
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1;
+    transition: transform .15s ease;
+}
+
+.sp-help-disclosure[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.sp-help-disclosure summary:hover {
+    color: #1d6a9e;
+    text-decoration: underline;
+}
+
+.sp-help-disclosure summary:focus {
+    outline: 2px solid var(--sp-info, #5b9bd5);
+    outline-offset: 2px;
+}
+
+.sp-help-disclosure[open] summary {
+    margin-bottom: 8px;
+}
+
+.sp-help-text {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--sp-text-muted);
+    margin: 0;
+}
+
+/* --- Scrollable table wrapper (Phase 3.8A) ---
+   Preferred pattern for any wide table on this page: scroll the table
+   itself horizontally on narrow viewports instead of letting it force
+   page-level horizontal overflow. Applied alongside the existing
+   .table-responsive wrapper — this class adds nothing that
+   .table-responsive doesn't already provide on its own, it's a named,
+   intentional alias so every table on this page uses one documented
+   pattern. */
+.sp-table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
